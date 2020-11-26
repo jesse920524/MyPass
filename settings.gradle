@@ -1,0 +1,5 @@
+include ':module_setting'
+include ':module_pass'
+include ':component_base'
+include ':app'
+rootProject.name = "MyPass"
