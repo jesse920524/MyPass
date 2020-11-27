@@ -10,4 +10,7 @@
 ## module_setting 设置相关业务
 
 
-    
+
+## others
+
+#### 加密算法的选择: AES

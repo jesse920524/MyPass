@@ -29,6 +29,7 @@ ext{
             "glide"                     : 'com.github.bumptech.glide:glide:4.11.0',
             "glide-annotationprocessor" : 'com.github.bumptech.glide:compiler:4.11.0',
             "vertical-tab"              : 'q.rorbin:VerticalTabLayout:1.2.5',
-            "text-drawable"             : 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+            "text-drawable"             : 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1',
+            "android-util-code"         : 'com.blankj:utilcodex:1.30.5'
     ]
 }
