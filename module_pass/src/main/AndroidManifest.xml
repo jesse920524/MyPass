@@ -2,4 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jessefu.me.module_pass">
 
+    <application>
+        <activity android:name="jessefu.me.mypass.main_page.MainPageActivity">
+        </activity>
+    </application>
 </manifest>

@@ -5,6 +5,9 @@ import android.content.Context;
 
 import androidx.room.Room;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.AppUtils;
+
 import jessefu.me.component_base.orm.database.AppDatabase;
 
 /**
@@ -23,6 +26,15 @@ public class BaseApp extends Application {
         super.onCreate();
 
         initRoom();
+        initRouter();
+    }
+
+    private void initRouter() {
+        if (AppUtils.isAppDebug()){
+            ARouter.openLog();
+            ARouter.openDebug();
+        }
+        ARouter.init(this);
     }
 
     private void initRoom(){

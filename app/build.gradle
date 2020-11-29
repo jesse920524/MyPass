@@ -46,13 +46,10 @@ dependencies {
     //依赖component_base
     implementation project(':component_base')
 
-//    //集成模式,依赖各业务module
-//    if (!rootProject.ext.isModule){
-//        implementation project(':module_about')
-//        implementation project(':module_details')
-//        implementation project(':module_entrance')
-//        implementation project(':module_main')
-//        implementation project(':module_modify')
-//        implementation project(':module_search')
-//    }
+    //集成模式,依赖各业务module
+    if (!rootProject.ext.isModule){
+        implementation project(':module_pass')
+        implementation project(':module_setting')
+
+    }
 }

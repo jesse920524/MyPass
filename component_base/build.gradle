@@ -41,6 +41,7 @@ dependencies {
     //把implementation 用api代替,它是对外部公开的, 所有其他的module就不需要添加该依赖
     annotationProcessor rootProject.ext.dependencies["glide-annotationprocessor"]
     annotationProcessor rootProject.ext.dependencies["room-annotationprocessor"]
+    annotationProcessor rootProject.ext.dependencies["arouter-annotationProcessor"]
     api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["material"]
     api rootProject.ext.dependencies["constraintlayout"]
@@ -50,7 +51,7 @@ dependencies {
     api rootProject.ext.dependencies["vertical-tab"]
     api rootProject.ext.dependencies["text-drawable"]
     api rootProject.ext.dependencies["android-util-code"]
-//    api rootProject.ext.dependencies["appcompat"]
+    api rootProject.ext.dependencies["arouter"]
 //    api rootProject.ext.dependencies["appcompat"]
 //    api rootProject.ext.dependencies["appcompat"]
 }
