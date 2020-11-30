@@ -12,7 +12,15 @@ public class RouterConstants {
     /**module_pass*/
     public static final String MODULE_PASS = "/module_pass";
 
+    //主页
     public static final String ACTIVITY_MAIN_PAGE = "activity_main_page";
+
+    //编辑页
+    public static final String ACTIVITY_EDIT = "activity_edit";
+
+    //详情页
+    public static final String ACTIVITY_DETAIL = "activity_detail";
+
     /*************************module_pass end*****************************/
 
 

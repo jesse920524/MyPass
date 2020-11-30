@@ -3,12 +3,17 @@
     package="jessefu.me.module_pass">
 
     <application>
-        <activity android:name="jessefu.me.mypass.main_page.MainPageActivity">
+        <activity android:name="jessefu.me.mypass.pages.main_page.MainPageActivity">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="jessefu.me.mypass.pages.edit.EditActivity"></activity>
+
+        <activity android:name="jessefu.me.mypass.pages.detail.DetailActivity"></activity>
+
     </application>
 </manifest>

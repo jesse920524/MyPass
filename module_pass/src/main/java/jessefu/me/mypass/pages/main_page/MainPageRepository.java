@@ -1,4 +1,4 @@
-package jessefu.me.mypass.main_page;
+package jessefu.me.mypass.pages.main_page;
 
 import jessefu.me.component_base.base.BaseRepository;
 
@@ -8,4 +8,6 @@ import jessefu.me.component_base.base.BaseRepository;
  * @description
  */
 public class MainPageRepository extends BaseRepository {
+
+
 }
