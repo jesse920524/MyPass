@@ -14,6 +14,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                //arouter编译的时候需要的module名字
+                arguments = [AROUTER_MODULE_NAME:project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -45,6 +52,7 @@ dependencies {
     api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["material"]
     api rootProject.ext.dependencies["constraintlayout"]
+    api rootProject.ext.dependencies["swipe-refresh"]
     api rootProject.ext.dependencies["room"]
     api rootProject.ext.dependencies["glide"]
 
@@ -52,6 +60,7 @@ dependencies {
     api rootProject.ext.dependencies["text-drawable"]
     api rootProject.ext.dependencies["android-util-code"]
     api rootProject.ext.dependencies["arouter"]
+    api rootProject.ext.dependencies["bottom-nav"]
 //    api rootProject.ext.dependencies["appcompat"]
 //    api rootProject.ext.dependencies["appcompat"]
 }

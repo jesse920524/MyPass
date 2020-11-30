@@ -37,6 +37,5 @@ android {
 }
 
 dependencies {
-implementation project(path: ':component_base')
     implementation project(path: ':component_base')
 }

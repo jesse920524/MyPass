@@ -24,6 +24,7 @@ ext{
             "appcompat"                  : 'androidx.appcompat:appcompat:1.2.0',
             "material"                   : 'com.google.android.material:material:1.2.1',
             "constraintlayout"           : 'androidx.constraintlayout:constraintlayout:2.0.4',
+            "swipe-refresh"              : 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0',
             "room"                       : 'androidx.room:room-runtime:2.2.5',
             "room-annotationprocessor"   : 'androidx.room:room-compiler:2.2.5',
             "glide"                      : 'com.github.bumptech.glide:glide:4.11.0',
@@ -32,6 +33,7 @@ ext{
             "text-drawable"              : 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1',
             "android-util-code"          : 'com.blankj:utilcodex:1.30.5',
             "arouter"                    : 'com.alibaba:arouter-api:1.5.1',
-            "arouter-annotationProcessor": 'com.alibaba:arouter-compiler:1.5.1'
+            "arouter-annotationProcessor": 'com.alibaba:arouter-compiler:1.5.1',
+            "bottom-nav"                 : 'com.ashokvarma.android:bottom-navigation-bar:2.2.0'
     ]
 }

@@ -33,10 +33,16 @@ public class RecordEntity {
     @ColumnInfo(name = "desc")
     public String desc;
 
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "RecordEntity{" +
+                "uid=" + uid +
+                ", account='" + account + '\'' +
+                ", encryptedPwd='" + encryptedPwd + '\'' +
+                ", tag='" + tag + '\'' +
+                ", star=" + star +
+                ", category='" + category + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
+    }
 }
