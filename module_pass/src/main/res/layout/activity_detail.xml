@@ -27,6 +27,15 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"></androidx.appcompat.widget.AppCompatImageView>
+
+            <TextView
+                android:id="@+id/tv_ad_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="title"
+                android:textSize="18sp"
+                android:textColor="@color/white"></TextView>
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
