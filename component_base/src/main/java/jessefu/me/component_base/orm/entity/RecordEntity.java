@@ -15,6 +15,9 @@ public class RecordEntity {
     @PrimaryKey(autoGenerate = true)
     public long uid;
 
+    @ColumnInfo(name = "name")
+    public String name;
+
     @ColumnInfo(name = "account")
     public String account;
 
@@ -37,6 +40,7 @@ public class RecordEntity {
     public String toString() {
         return "RecordEntity{" +
                 "uid=" + uid +
+                ", name='" + name + '\'' +
                 ", account='" + account + '\'' +
                 ", encryptedPwd='" + encryptedPwd + '\'' +
                 ", tag='" + tag + '\'' +

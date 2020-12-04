@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_prefix">账号: </string>
+    <string name="password_prefix">密码: </string>
+    <string name="category_prefix">标签: </string>
+    <string name="desc_prefix">备注: </string>
+</resources>

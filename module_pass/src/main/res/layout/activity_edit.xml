@@ -1,5 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+   <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_ae"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/purple_500">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_ae_close"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/ic_baseline_close_24"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"></androidx.appcompat.widget.AppCompatImageView>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_ae_save"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/ic_baseline_check_24"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"></androidx.appcompat.widget.AppCompatImageView>
+
+            <TextView
+                android:id="@+id/tv_ae_header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="TITLE"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"></TextView>
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_ae_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tb_ae"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:textColorHint="@color/purple_500"
+        >
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_ae_name"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="账户名称"
+            android:inputType="text"></androidx.appcompat.widget.AppCompatEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_ae_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/til_ae_name"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:textColorHint="@color/purple_500">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_ae_account"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="账号"
+            android:inputType="text"></androidx.appcompat.widget.AppCompatEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_ae_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/til_ae_account"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:textColorHint="@color/purple_500"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/purple_500"
+        app:passwordToggleDrawable="@drawable/ic_baseline_remove_red_eye_24">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_ae_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="密码"
+            android:inputType="textPassword"></androidx.appcompat.widget.AppCompatEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_ae_desc"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/til_ae_pwd"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:textColorHint="@color/purple_500">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_ae_desc"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="备注"
+            android:inputType="text"></androidx.appcompat.widget.AppCompatEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 </RelativeLayout>

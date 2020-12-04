@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tv_ad"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         >
@@ -29,16 +30,161 @@
                 android:layout_marginRight="10dp"></androidx.appcompat.widget.AppCompatImageView>
 
             <TextView
-                android:id="@+id/tv_ad_title"
+                android:id="@+id/tv_ad_header_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="title"
+                android:text=""
                 android:textSize="18sp"
                 android:textColor="@color/white"></TextView>
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
-    
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fab_ad"-->
+<!--        android:layout_width="56dp"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_margin="15dp"-->
+<!--        android:src="@drawable/ic_baseline_edit_24"-->
+<!--        app:backgroundTint="@color/purple_500"-->
+<!--        android:background="@color/purple_500"-->
+<!--        android:elevation="10dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>-->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_ad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_ad"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tv_ad_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="title"
+                android:textSize="40sp"></TextView>
+
+            <!--account-->
+            <RelativeLayout
+                android:id="@+id/rl_ad_account"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/tv_ad_title">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_ad_account"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    app:srcCompat="@drawable/ic_baseline_account_circle_24"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    ></androidx.appcompat.widget.AppCompatImageView>
+                <TextView
+                    android:id="@+id/tv_ad_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="18sp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_ad_account"
+                    android:layout_marginLeft="10dp"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_ad_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/rl_ad_account">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_ad_pwd"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    app:srcCompat="@drawable/ic_baseline_lock_24"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    ></androidx.appcompat.widget.AppCompatImageView>
+                <TextView
+                    android:id="@+id/tv_ad_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="18sp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_ad_pwd"
+                    android:layout_marginLeft="10dp"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_ad_category"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/rl_ad_pwd">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_ad_category"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    app:srcCompat="@drawable/ic_baseline_category_24"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    ></androidx.appcompat.widget.AppCompatImageView>
+                <TextView
+                    android:id="@+id/tv_ad_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="18sp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_ad_category"
+                    android:layout_marginLeft="10dp"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_ad_desc"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/rl_ad_category">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_ad_desc"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    app:srcCompat="@drawable/ic_baseline_note_24"
+                    android:layout_margin="12dp"
+                    android:layout_marginLeft="12dp"
+                    ></androidx.appcompat.widget.AppCompatImageView>
+                <TextView
+                    android:id="@+id/tv_ad_desc_prefix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:text="@string/desc_prefix"
+                    android:textSize="18sp"
+                    android:layout_alignTop="@id/iv_ad_desc"
+                    android:layout_toRightOf="@id/iv_ad_desc"
+                    android:layout_marginLeft="10dp"></TextView>
+                <TextView
+                    android:id="@+id/tv_ad_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="18sp"
+                    android:layout_below="@id/tv_ad_desc_prefix"
+                    android:layout_toRightOf="@id/iv_ad_desc"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="6"
+                    android:ellipsize="end"></TextView>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
 </RelativeLayout>
