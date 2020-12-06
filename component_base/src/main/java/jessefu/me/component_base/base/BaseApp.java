@@ -38,6 +38,6 @@ public class BaseApp extends Application {
     }
 
     private void initRoom(){
-        mAppDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "db-name").build();
+        mAppDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, AppDatabase.DB_NAME).build();
     }
 }

@@ -1,21 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_amp"
         android:layout_width="match_parent"
-        android:layout_height="44dp">
+        android:layout_height="44dp"
+        app:contentInsetStart="0dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/purple_500"></RelativeLayout>
+            android:background="@color/purple_500">
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view_amp"
+                android:layout_width="240dp"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                app:iconifiedByDefault="true"
+                app:closeIcon="@drawable/ic_baseline_close_24"
+                android:maxWidth="240dp"
+                ></androidx.appcompat.widget.SearchView>
+        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp_amp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_amp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="24dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:backgroundTint="@color/purple_500"
+        app:borderWidth="0dp"
+        ></com.google.android.material.floatingactionbutton.FloatingActionButton>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_amp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.viewpager2.widget.ViewPager2>
+        android:layout_height="match_parent"
+        android:layout_below="@id/tb_amp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_amp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 
 </RelativeLayout>

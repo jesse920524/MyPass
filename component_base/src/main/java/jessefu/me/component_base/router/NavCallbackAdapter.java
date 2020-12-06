@@ -6,7 +6,8 @@ import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 /**
  * @author Jesse Fu
  * @date 2020/12/3
- * @description
+ * @description 路由回调适配器
+ * {@link com.alibaba.android.arouter.launcher.ARouter}
  */
 public abstract class NavCallbackAdapter implements NavigationCallback {
 

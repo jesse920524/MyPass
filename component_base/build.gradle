@@ -18,7 +18,8 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 //arouter编译的时候需要的module名字
-                arguments = [AROUTER_MODULE_NAME:project.getName()]
+                arguments = [AROUTER_MODULE_NAME:project.getName(),
+                             "room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
     }

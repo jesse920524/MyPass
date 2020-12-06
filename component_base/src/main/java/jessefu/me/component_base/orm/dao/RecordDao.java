@@ -1,5 +1,6 @@
 package jessefu.me.component_base.orm.dao;
 
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -15,6 +16,7 @@ import jessefu.me.component_base.orm.entity.RecordEntity;
  * @date 2020/11/27
  * @description
  */
+@Dao
 public interface RecordDao {
 
     @Query("SELECT * FROM record_entity")
