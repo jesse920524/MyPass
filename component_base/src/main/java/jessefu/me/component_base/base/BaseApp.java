@@ -3,6 +3,7 @@ package jessefu.me.component_base.base;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.lifecycle.ViewModel;
 import androidx.room.Room;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -20,6 +21,10 @@ public class BaseApp extends Application {
     private static Context mContext;
 
     private static AppDatabase mAppDatabase;
+
+    public static AppDatabase getAppDataBase(){
+        return mAppDatabase;
+    }
 
     @Override
     public void onCreate() {

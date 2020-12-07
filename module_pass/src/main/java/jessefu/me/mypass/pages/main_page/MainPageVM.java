@@ -1,6 +1,11 @@
 package jessefu.me.mypass.pages.main_page;
 
+import androidx.lifecycle.MutableLiveData;
+
+import java.util.List;
+
 import jessefu.me.component_base.base.BaseViewModel;
+import jessefu.me.component_base.orm.entity.RecordEntity;
 
 /**
  * @author Jesse Fu
@@ -8,4 +13,17 @@ import jessefu.me.component_base.base.BaseViewModel;
  * @description
  */
 public class MainPageVM extends BaseViewModel {
+    private static final String TAG = "MainPageVM";
+
+    private MainPageRepository mRepository = new MainPageRepository();
+    private MutableLiveData<List<RecordEntity>> mRecordsLiveData = new MutableLiveData<>();
+
+    public MainPageVM() {
+
+    }
+
+    public MutableLiveData<List<RecordEntity>> readAllData(){
+        mRecordsLiveData.setValue(mRepository.readAllData());
+        return mRecordsLiveData;
+    }
 }
