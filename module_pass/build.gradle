@@ -38,4 +38,6 @@ android {
 
 dependencies {
     implementation project(path: ':component_base')
+    annotationProcessor rootProject.ext.dependencies["arouter-annotationProcessor"]
+
 }

@@ -13,15 +13,15 @@ public class RouterConstants {
     public static final String MODULE_PASS = "/module_pass";
 
     //主页
-    public static final String ACTIVITY_MAIN_PAGE = "activity_main_page";
+    public static final String ACTIVITY_MAIN_PAGE = "/activity_main_page";
 
     //编辑页
-    public static final String ACTIVITY_EDIT = "activity_edit";
+    public static final String ACTIVITY_EDIT = "/activity_edit";
     //编辑页需要参数: id
     public static final String KEY_EDIT_ID = "key_edit_id";
 
     //详情页
-    public static final String ACTIVITY_DETAIL = "activity_detail";
+    public static final String ACTIVITY_DETAIL = "/activity_detail";
     //详情页需要参数: id
     public static final String KEY_DETAIL_ID = "key_detail_id";
 

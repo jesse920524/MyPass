@@ -29,6 +29,9 @@ public interface RecordDao {
     @Query("SELECT * FROM RECORD_ENTITY WHERE category LIKE :category")
     LiveData<List<RecordEntity>> findByCategory(String category);
 
+    @Query("SELECT * FROM RECORD_ENTITY WHERE uid == :id")
+    LiveData<RecordEntity> findById(long id);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(RecordEntity recordEntity);
 

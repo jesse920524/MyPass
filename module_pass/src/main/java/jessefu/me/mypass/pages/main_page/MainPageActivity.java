@@ -20,6 +20,7 @@ import java.util.List;
 
 import jessefu.me.component_base.base.BaseActivity;
 import jessefu.me.component_base.orm.entity.RecordEntity;
+import jessefu.me.component_base.router.Router;
 import jessefu.me.component_base.router.RouterConstants;
 import jessefu.me.module_pass.R;
 
@@ -58,7 +59,9 @@ public class MainPageActivity extends BaseActivity {
         mRecyclerView = findViewById(R.id.rv_amp);
         mFab = findViewById(R.id.fab_amp);
 
-        mFab.setImageResource(R.drawable.ic_baseline_edit_24);
+        mFab.setOnClickListener(v->{
+            Router.INSTANCE.navToEdit(MainPageActivity.this, -1, null);
+        });
     }
 
     @Override
