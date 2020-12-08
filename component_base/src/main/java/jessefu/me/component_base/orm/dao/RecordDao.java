@@ -1,5 +1,6 @@
 package jessefu.me.component_base.orm.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -20,13 +21,13 @@ import jessefu.me.component_base.orm.entity.RecordEntity;
 public interface RecordDao {
 
     @Query("SELECT * FROM record_entity")
-    List<RecordEntity> getAll();
+    LiveData<List<RecordEntity>> getAll();
 
     @Query("SELECT * FROM RECORD_ENTITY WHERE tag LIKE :tag")
-    List<RecordEntity> findByTag(String tag);
+    LiveData<List<RecordEntity>> findByTag(String tag);
 
     @Query("SELECT * FROM RECORD_ENTITY WHERE category LIKE :category")
-    List<RecordEntity> findByCategory(String category);
+    LiveData<List<RecordEntity>> findByCategory(String category);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(RecordEntity recordEntity);

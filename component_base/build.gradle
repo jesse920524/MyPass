@@ -55,6 +55,7 @@ dependencies {
     api rootProject.ext.dependencies["constraintlayout"]
     api rootProject.ext.dependencies["swipe-refresh"]
     api rootProject.ext.dependencies["room"]
+//    api rootProject.ext.dependencies["room-rxjava"]
     api rootProject.ext.dependencies["glide"]
 
     api rootProject.ext.dependencies["vertical-tab"]
@@ -62,6 +63,7 @@ dependencies {
     api rootProject.ext.dependencies["android-util-code"]
     api rootProject.ext.dependencies["arouter"]
     api rootProject.ext.dependencies["bottom-nav"]
-//    api rootProject.ext.dependencies["appcompat"]
+//    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["brvah"]
 //    api rootProject.ext.dependencies["appcompat"]
 }

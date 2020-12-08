@@ -23,7 +23,7 @@ public class MainPageVM extends BaseViewModel {
     }
 
     public MutableLiveData<List<RecordEntity>> readAllData(){
-        mRecordsLiveData.setValue(mRepository.readAllData());
+        mRecordsLiveData.setValue(mRepository.readAllData().getValue());
         return mRecordsLiveData;
     }
 }
