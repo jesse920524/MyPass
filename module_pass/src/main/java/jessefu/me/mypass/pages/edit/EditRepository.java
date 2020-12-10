@@ -23,4 +23,12 @@ public class EditRepository extends BaseRepository {
     public LiveData<RecordEntity> queryById(@NonNull long id){
         return mRecordDao.findById(id);
     }
+
+    public int update(RecordEntity entity){
+        return mRecordDao.update(entity);
+    }
+
+    public void add(RecordEntity entity){
+        mRecordDao.insert(entity);
+    }
 }

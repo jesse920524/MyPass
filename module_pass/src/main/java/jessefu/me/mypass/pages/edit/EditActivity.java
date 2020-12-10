@@ -43,7 +43,7 @@ public class EditActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-
+        initViews();
         mViewModel = new ViewModelProvider.NewInstanceFactory().create(EditVM.class);
         mViewModel.queryById(mId).observe(EditActivity.this, new Observer<RecordEntity>() {
             @Override
@@ -51,11 +51,29 @@ public class EditActivity extends BaseActivity {
                 Log.d(TAG, "onChanged: " + recordEntity);
             }
         });
-//        if (mId != -1){
-//
-//
-//        }
 
+
+    }
+
+    private void initViews() {
+        mIvCancel = findViewById(R.id.iv_ae_close);
+        mIvConfirm = findViewById(R.id.iv_ae_save);
+
+        mEtName = findViewById(R.id.et_ae_name)
+        initClicks();
+    }
+
+    private void initClicks() {
+        mIvConfirm.setOnClickListener(v->{
+            mViewModel.save(mEtName.getText().toString(),
+                    mEtAccount.getText().toString(),
+                    mEtPwd.getText().toString(),
+                    mEtDesc.getText().toString());
+        });
+
+        mIvCancel.setOnClickListener(v->{
+            finish();
+        });
     }
 
 
