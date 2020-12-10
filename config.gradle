@@ -36,7 +36,12 @@ ext{
             "arouter"                    : 'com.alibaba:arouter-api:1.5.1',
             "arouter-annotationProcessor": 'com.alibaba:arouter-compiler:1.5.1',
             "bottom-nav"                 : 'com.ashokvarma.android:bottom-navigation-bar:2.2.0',
-            "brvah"                      : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
-//            "rxjava"                     : 'io.reactivex.rxjava3:rxjava:3.0.8'
+            "brvah"                      : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4',
+            "okhttp"                     : 'com.squareup.okhttp3:okhttp:4.9.0',
+            "retrofit"                   : 'com.squareup.retrofit2:retrofit:2.9.0',
+            "retrofit-rxjava"            : 'com.squareup.retrofit2:adapter-rxjava3:2.9.0',
+            "retrofit-gson"              : 'com.squareup.retrofit2:converter-gson:2.9.0',
+            "rxjava"                     : 'io.reactivex.rxjava3:rxjava:3.0.8',
+            "gson"                       : 'com.google.code.gson:gson:2.8.6'
     ]
 }

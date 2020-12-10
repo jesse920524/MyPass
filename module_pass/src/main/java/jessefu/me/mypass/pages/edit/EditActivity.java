@@ -58,8 +58,6 @@ public class EditActivity extends BaseActivity {
     private void initViews() {
         mIvCancel = findViewById(R.id.iv_ae_close);
         mIvConfirm = findViewById(R.id.iv_ae_save);
-
-        mEtName = findViewById(R.id.et_ae_name)
         initClicks();
     }
 
