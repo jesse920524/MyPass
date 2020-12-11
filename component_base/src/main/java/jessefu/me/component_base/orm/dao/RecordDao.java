@@ -20,7 +20,7 @@ import jessefu.me.component_base.orm.entity.RecordEntity;
 @Dao
 public interface RecordDao {
 
-    @Query("SELECT * FROM record_entity")
+    @Query("SELECT * FROM RECORD_ENTITY")
     LiveData<List<RecordEntity>> getAll();
 
     @Query("SELECT * FROM RECORD_ENTITY WHERE tag LIKE :tag")
@@ -32,8 +32,9 @@ public interface RecordDao {
     @Query("SELECT * FROM RECORD_ENTITY WHERE uid == :id")
     LiveData<RecordEntity> findById(long id);
 
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(RecordEntity recordEntity);
+    long insert(RecordEntity recordEntity);
 
     @Delete
     int delete(RecordEntity recordEntity);

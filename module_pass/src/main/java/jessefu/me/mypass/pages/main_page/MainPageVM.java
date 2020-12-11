@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
 import jessefu.me.component_base.base.BaseViewModel;
 import jessefu.me.component_base.orm.entity.RecordEntity;
 
@@ -25,5 +26,9 @@ public class MainPageVM extends BaseViewModel {
     public MutableLiveData<List<RecordEntity>> readAllData(){
         mRecordsLiveData.setValue(mRepository.readAllData().getValue());
         return mRecordsLiveData;
+    }
+
+    public Observable<Long> mockInsert(){
+        return mRepository.mockInsert();
     }
 }

@@ -6,6 +6,14 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import jessefu.me.component_base.base.BaseApp;
 import jessefu.me.component_base.base.BaseRepository;
 import jessefu.me.component_base.orm.dao.RecordDao;
@@ -37,5 +45,18 @@ public class MainPageRepository extends BaseRepository {
         LiveData<List<RecordEntity>> result = mRecordDao.findByCategory(category);
         Log.d(TAG, "readByCategory: " + result.getValue());
         return result;
+    }
+
+    public Observable<Long> mockInsert(){
+        return Observable.create((ObservableOnSubscribe<Long>)emitter->{
+            RecordEntity recordEntity = new RecordEntity();
+            recordEntity.name = String.valueOf(System.currentTimeMillis());
+            recordEntity.account = "account";
+            recordEntity.encryptedPwd = "pwd";
+            recordEntity.desc = "desc";
+            long v = mRecordDao.insert(recordEntity);
+            emitter.onNext(v);
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }

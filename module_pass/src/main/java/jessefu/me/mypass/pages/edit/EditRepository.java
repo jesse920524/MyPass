@@ -1,5 +1,7 @@
 package jessefu.me.mypass.pages.edit;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
@@ -29,6 +31,7 @@ public class EditRepository extends BaseRepository {
     }
 
     public void add(RecordEntity entity){
-        mRecordDao.insert(entity);
+        long id = mRecordDao.insert(entity);
+        Log.d(TAG, "add: " + id);
     }
 }

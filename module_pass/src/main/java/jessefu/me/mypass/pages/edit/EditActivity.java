@@ -12,6 +12,8 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.textfield.TextInputEditText;
 
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.disposables.Disposable;
 import jessefu.me.component_base.base.BaseActivity;
 import jessefu.me.component_base.orm.entity.RecordEntity;
 import jessefu.me.component_base.router.RouterConstants;
@@ -58,6 +60,11 @@ public class EditActivity extends BaseActivity {
     private void initViews() {
         mIvCancel = findViewById(R.id.iv_ae_close);
         mIvConfirm = findViewById(R.id.iv_ae_save);
+        mEtAccount = findViewById(R.id.et_ae_account);
+        mEtPwd = findViewById(R.id.et_ae_pwd);
+        mEtName = findViewById(R.id.et_ae_name);
+        mEtDesc = findViewById(R.id.et_ae_desc);
+
         initClicks();
     }
 
@@ -66,7 +73,31 @@ public class EditActivity extends BaseActivity {
             mViewModel.save(mEtName.getText().toString(),
                     mEtAccount.getText().toString(),
                     mEtPwd.getText().toString(),
-                    mEtDesc.getText().toString());
+                    mEtDesc.getText().toString())
+                    .subscribe(new io.reactivex.rxjava3.core.Observer<RecordEntity>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(@NonNull RecordEntity recordEntity) {
+                            Log.d(TAG, "onNext: " + recordEntity);
+
+//                            finish();
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            Log.d(TAG, "onError: " + e.getLocalizedMessage());
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+
         });
 
         mIvCancel.setOnClickListener(v->{

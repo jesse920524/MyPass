@@ -18,6 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.functions.Consumer;
 import jessefu.me.component_base.base.BaseActivity;
 import jessefu.me.component_base.orm.entity.RecordEntity;
 import jessefu.me.component_base.router.Router;
@@ -60,7 +61,13 @@ public class MainPageActivity extends BaseActivity {
         mFab = findViewById(R.id.fab_amp);
 
         mFab.setOnClickListener(v->{
-            Router.INSTANCE.navToEdit(MainPageActivity.this, -1, null);
+//            Router.INSTANCE.navToEdit(MainPageActivity.this, -1, null);
+            mViewModel.mockInsert().subscribe(new Consumer<Long>() {
+                @Override
+                public void accept(Long aLong) throws Throwable {
+                    Log.d(TAG, "accept:  " + aLong);
+                }
+            });
         });
     }
 

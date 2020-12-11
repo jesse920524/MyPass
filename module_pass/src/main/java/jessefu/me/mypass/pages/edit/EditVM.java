@@ -7,8 +7,15 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.blankj.utilcode.util.ObjectUtils;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import jessefu.me.component_base.base.BaseViewModel;
 import jessefu.me.component_base.orm.entity.RecordEntity;
+import kotlin.Unit;
 
 /**
  * @author Jesse Fu
@@ -31,24 +38,27 @@ public class EditVM extends BaseViewModel {
         return mRecordEntityData;
     }
 
-    public void save(String name,
+    public Observable<RecordEntity> save(String name,
                      String account,
                      String pwd,
                      String desc){
-        if(ObjectUtils.isEmpty(mRecordEntityData.getValue())){
-            RecordEntity entity = new RecordEntity();
-            entity.name = name;
-            entity.account = account;
-            entity.encryptedPwd = pwd;
-            entity.desc = desc;
-            mRepository.add(entity);
-        }else{
-            RecordEntity entity = mRecordEntityData.getValue();
-            entity.name = name;
-            entity.account = account;
-            entity.encryptedPwd = pwd;
-            entity.desc = desc;
-            mRepository.update(entity);
-        }
+        return Observable.create(new ObservableOnSubscribe<RecordEntity>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<RecordEntity> emitter) throws Throwable {
+                RecordEntity entity = new RecordEntity();
+                entity.name = name;
+                entity.account = account;
+                entity.encryptedPwd = pwd;
+                entity.desc = desc;
+                if(ObjectUtils.isEmpty(mRecordEntityData.getValue())){
+                    mRepository.add(entity);
+                }else{
+                    mRepository.update(entity);
+                }
+                emitter.onNext(entity);
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
     }
 }
