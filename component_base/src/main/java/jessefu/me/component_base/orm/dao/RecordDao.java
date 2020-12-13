@@ -21,10 +21,10 @@ import jessefu.me.component_base.orm.entity.RecordEntity;
 public interface RecordDao {
 
     @Query("SELECT * FROM RECORD_ENTITY")
-    LiveData<List<RecordEntity>> getAll();
+    List<RecordEntity> getAll();
 
     @Query("SELECT * FROM RECORD_ENTITY WHERE tag LIKE :tag")
-    LiveData<List<RecordEntity>> findByTag(String tag);
+    List<RecordEntity> findByTag(String tag);
 
     @Query("SELECT * FROM RECORD_ENTITY WHERE category LIKE :category")
     LiveData<List<RecordEntity>> findByCategory(String category);

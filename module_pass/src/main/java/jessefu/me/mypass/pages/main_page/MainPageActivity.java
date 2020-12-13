@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -24,6 +25,7 @@ import jessefu.me.component_base.orm.entity.RecordEntity;
 import jessefu.me.component_base.router.Router;
 import jessefu.me.component_base.router.RouterConstants;
 import jessefu.me.module_pass.R;
+import jessefu.me.mypass.pages.main_page.adapter.MainPageRvAdapter;
 
 /**
  * author: Jesse Fu
@@ -38,6 +40,8 @@ public class MainPageActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
     private FloatingActionButton mFab;
 
+    private MainPageRvAdapter mAdapter;
+
     private MainPageVM mViewModel;
 
     @Override
@@ -46,13 +50,12 @@ public class MainPageActivity extends BaseActivity {
         setContentView(R.layout.activity_main_page);
         mViewModel = new ViewModelProvider.NewInstanceFactory().create(MainPageVM.class);
         initViews();
+    }
 
-        mViewModel.readAllData().observe(this, new Observer<List<RecordEntity>>() {
-            @Override
-            public void onChanged(List<RecordEntity> recordEntities) {
-                Log.d(TAG, "onChanged: " + recordEntities);
-            }
-        });
+    @Override
+    protected void onResume() {
+        super.onResume();
+        subscribeUI();
     }
 
     private void initViews() {
@@ -69,6 +72,13 @@ public class MainPageActivity extends BaseActivity {
                 }
             });
         });
+
+        mSrl.setOnRefreshListener(()->{
+            mViewModel.readAllData();
+        });
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        mAdapter = new MainPageRvAdapter();
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -77,5 +87,16 @@ public class MainPageActivity extends BaseActivity {
         return true;
     }
 
-
+    private void subscribeUI(){
+        mViewModel.readAllData().observe(this, new Observer<List<RecordEntity>>() {
+            @Override
+            public void onChanged(List<RecordEntity> recordEntities) {
+                Log.d(TAG, "onChanged: " + recordEntities);
+                if (mSrl.isRefreshing()){
+                    mSrl.setRefreshing(false);
+                }
+                mAdapter.setNewInstance(recordEntities);
+            }
+        });
+    }
 }

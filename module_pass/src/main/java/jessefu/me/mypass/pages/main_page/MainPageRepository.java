@@ -2,9 +2,11 @@ package jessefu.me.mypass.pages.main_page;
 
 import android.util.Log;
 
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -29,17 +31,28 @@ public class MainPageRepository extends BaseRepository {
 
     private RecordDao mRecordDao = BaseApp.getAppDataBase().recordDao();
 
-    public LiveData<List<RecordEntity>> readAllData(){
-        LiveData<List<RecordEntity>> result = mRecordDao.getAll();
-        Log.d(TAG, "readAllData: " + result.getValue());
-        return result;
+    public Observable<List<RecordEntity>> readAll(){
+        return Observable.create(new ObservableOnSubscribe<List<RecordEntity>>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<List<RecordEntity>> emitter) throws Throwable {
+                emitter.onNext(mRecordDao.getAll());
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
     }
 
-    public LiveData<List<RecordEntity>> readByTag(String tag){
-        LiveData<List<RecordEntity>> result = mRecordDao.findByTag(tag);
-        Log.d(TAG, "readByTag: " + result.getValue());
-        return result;
-    }
+//    public LiveData<List<RecordEntity>> readAllData(){
+//        LiveData<List<RecordEntity>> result = mRecordDao.getAll();
+//        Log.d(TAG, "readAllData: " + result.getValue());
+//        return result;
+//    }
+//
+//    public LiveData<List<RecordEntity>> readByTag(String tag){
+//        LiveData<List<RecordEntity>> result = mRecordDao.findByTag(tag);
+//        Log.d(TAG, "readByTag: " + result.getValue());
+//        return result;
+//    }
 
     public LiveData<List<RecordEntity>> readByCategory(String category){
         LiveData<List<RecordEntity>> result = mRecordDao.findByCategory(category);
