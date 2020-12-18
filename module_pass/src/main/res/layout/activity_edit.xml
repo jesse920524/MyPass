@@ -123,4 +123,14 @@
             android:inputType="text"
             android:background="@color/white"></com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_ae_delete"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/til_ae_desc"
+        android:layout_marginTop="10dp"
+        android:text="@string/long_press_delete"
+        android:textColor="@color/purple_500"></Button>
 </RelativeLayout>

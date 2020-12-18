@@ -2,6 +2,7 @@ package jessefu.me.mypass.pages.main_page;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
@@ -26,26 +27,13 @@ public class MainPageVM extends BaseViewModel {
 
     }
 
-    public MutableLiveData<List<RecordEntity>> readAllData(){
-        mRepository.readAll()
-                .subscribe(records -> {
-                    mRecordsLiveData.setValue(records);
-                },
-                        throwable -> {
-                            Log.d(TAG, "readAllData: " + throwable.getLocalizedMessage());
-                });
-        return mRecordsLiveData;
+    public LiveData<List<RecordEntity>> readAllData(){
+        return mRepository.readAllData();
     }
 
 
 
-    public Observable<Long> mockInsert(){
-        return mRepository.mockInsert()
-                .doOnNext(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Throwable {
-                        readAllData();
-                    }
-                });
+    public void mockInsert(){
+         mRepository.mockInsert();
     }
 }

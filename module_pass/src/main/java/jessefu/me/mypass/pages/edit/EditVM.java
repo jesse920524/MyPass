@@ -1,21 +1,16 @@
 package jessefu.me.mypass.pages.edit;
 
-import android.icu.text.AlphabeticIndex;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.blankj.utilcode.util.ObjectUtils;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableEmitter;
-import io.reactivex.rxjava3.core.ObservableOnSubscribe;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 import jessefu.me.component_base.base.BaseViewModel;
 import jessefu.me.component_base.orm.entity.RecordEntity;
-import kotlin.Unit;
 
 /**
  * @author Jesse Fu
@@ -27,38 +22,112 @@ public class EditVM extends BaseViewModel {
 
     private EditRepository mRepository = new EditRepository();
 
-    private MutableLiveData<RecordEntity> mRecordEntityData = new MutableLiveData<>();
+    private MutableLiveData<RecordEntity> mRecordEntityData = new MediatorLiveData<>();
+
+    private MutableLiveData<Long> mUpdateData = new MutableLiveData<>();
+
+    private MutableLiveData<Long> mAddData = new MutableLiveData<>();
+
+    private MutableLiveData<Integer> mDeleteData = new MutableLiveData<>();
+
     public EditVM() {
     }
 
-    public MutableLiveData<RecordEntity> queryById(long id){
-        RecordEntity entity = mRepository.queryById(id)
-                .getValue();
-        mRecordEntityData.setValue(entity);
-        return mRecordEntityData;
+    public LiveData<RecordEntity> queryById(long id){
+        return mRepository.queryById(id);
     }
 
-    public Observable<RecordEntity> save(String name,
+    public LiveData<Long> save(String name,
                      String account,
                      String pwd,
                      String desc){
-        return Observable.create(new ObservableOnSubscribe<RecordEntity>() {
-            @Override
-            public void subscribe(@NonNull ObservableEmitter<RecordEntity> emitter) throws Throwable {
-                RecordEntity entity = new RecordEntity();
-                entity.name = name;
-                entity.account = account;
-                entity.encryptedPwd = pwd;
-                entity.desc = desc;
-                if(ObjectUtils.isEmpty(mRecordEntityData.getValue())){
-                    mRepository.add(entity);
-                }else{
-                    mRepository.update(entity);
-                }
-                emitter.onNext(entity);
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        RecordEntity entity = new RecordEntity();
+        entity.name = name;
+        entity.account = account;
+        entity.encryptedPwd = pwd;
+        entity.desc = desc;
+        mRepository.add(entity)
+                 .subscribe(new Observer<Long>() {
+                     @Override
+                     public void onSubscribe(@NonNull Disposable d) {
 
+                     }
+
+                     @Override
+                     public void onNext(@NonNull Long aLong) {
+                         mAddData.setValue(aLong);
+                     }
+
+                     @Override
+                     public void onError(@NonNull Throwable e) {
+                         Log.d(TAG, "onError: " + e.getLocalizedMessage());
+                     }
+
+                     @Override
+                     public void onComplete() {
+
+                     }
+                 });
+         return mAddData;
+    }
+
+    public LiveData<Long> update(String name,
+                                 String account,
+                                 String pwd,
+                                 String desc){
+        RecordEntity entity = new RecordEntity();
+        entity.name = name;
+        entity.account = account;
+        entity.encryptedPwd = pwd;
+        entity.desc = desc;
+        mRepository.update(entity)
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Integer integer) {
+                        mUpdateData.setValue(System.currentTimeMillis());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        return mUpdateData;
+    }
+
+    public LiveData<Integer> delete(RecordEntity entity){
+        mRepository.deleteById(entity)
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Integer integer) {
+                        mDeleteData.setValue(integer);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError: ");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        return mDeleteData;
     }
 }

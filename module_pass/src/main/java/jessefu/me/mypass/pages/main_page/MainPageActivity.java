@@ -3,25 +3,26 @@ package jessefu.me.mypass.pages.main_page;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-import io.reactivex.rxjava3.functions.Consumer;
 import jessefu.me.component_base.base.BaseActivity;
 import jessefu.me.component_base.orm.entity.RecordEntity;
+import jessefu.me.component_base.router.NavCallbackAdapter;
 import jessefu.me.component_base.router.Router;
 import jessefu.me.component_base.router.RouterConstants;
 import jessefu.me.module_pass.R;
@@ -55,7 +56,7 @@ public class MainPageActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        subscribeUI();
+        readAllDatas();
     }
 
     private void initViews() {
@@ -64,20 +65,22 @@ public class MainPageActivity extends BaseActivity {
         mFab = findViewById(R.id.fab_amp);
 
         mFab.setOnClickListener(v->{
-//            Router.INSTANCE.navToEdit(MainPageActivity.this, -1, null);
-            mViewModel.mockInsert().subscribe(new Consumer<Long>() {
-                @Override
-                public void accept(Long aLong) throws Throwable {
-                    Log.d(TAG, "accept:  " + aLong);
-                }
-            });
+//            mViewModel.mockInsert();
+            Router.INSTANCE.navToEdit(MainPageActivity.this, -1, null);
         });
 
         mSrl.setOnRefreshListener(()->{
-            mViewModel.readAllData();
+            readAllDatas();
         });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mAdapter = new MainPageRvAdapter();
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                RecordEntity item = (RecordEntity) adapter.getData().get(position);
+                Router.INSTANCE.navToEdit(MainPageActivity.this, item.uid, null);
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -87,7 +90,7 @@ public class MainPageActivity extends BaseActivity {
         return true;
     }
 
-    private void subscribeUI(){
+    private void readAllDatas(){
         mViewModel.readAllData().observe(this, new Observer<List<RecordEntity>>() {
             @Override
             public void onChanged(List<RecordEntity> recordEntities) {

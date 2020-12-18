@@ -20,25 +20,31 @@ import jessefu.me.component_base.orm.entity.RecordEntity;
 @Dao
 public interface RecordDao {
 
+    /**读取全部*/
     @Query("SELECT * FROM RECORD_ENTITY")
-    List<RecordEntity> getAll();
+    LiveData<List<RecordEntity>> getAll();
 
+    /**根据tag读取*/
     @Query("SELECT * FROM RECORD_ENTITY WHERE tag LIKE :tag")
-    List<RecordEntity> findByTag(String tag);
+    LiveData<List<RecordEntity>> findByTag(String tag);
 
+    /**根据category读取*/
     @Query("SELECT * FROM RECORD_ENTITY WHERE category LIKE :category")
     LiveData<List<RecordEntity>> findByCategory(String category);
 
+    /**根据id读取*/
     @Query("SELECT * FROM RECORD_ENTITY WHERE uid == :id")
     LiveData<RecordEntity> findById(long id);
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    /**@return id*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(RecordEntity recordEntity);
 
+    /**@return affected rows*/
     @Delete
     int delete(RecordEntity recordEntity);
 
+    /**@return affected rows*/
     @Update(onConflict = OnConflictStrategy.REPLACE)
     int update(RecordEntity recordEntity);
 

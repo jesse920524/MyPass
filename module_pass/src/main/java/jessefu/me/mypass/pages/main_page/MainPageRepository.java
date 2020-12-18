@@ -31,22 +31,24 @@ public class MainPageRepository extends BaseRepository {
 
     private RecordDao mRecordDao = BaseApp.getAppDataBase().recordDao();
 
-    public Observable<List<RecordEntity>> readAll(){
-        return Observable.create(new ObservableOnSubscribe<List<RecordEntity>>() {
-            @Override
-            public void subscribe(@NonNull ObservableEmitter<List<RecordEntity>> emitter) throws Throwable {
-                emitter.onNext(mRecordDao.getAll());
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-
+    public MainPageRepository() {
+        Log.d(TAG, "MainPageRepository: " + mRecordDao);
     }
 
-//    public LiveData<List<RecordEntity>> readAllData(){
-//        LiveData<List<RecordEntity>> result = mRecordDao.getAll();
-//        Log.d(TAG, "readAllData: " + result.getValue());
-//        return result;
+//    public Observable<List<RecordEntity>> readAll(){
+//        return Observable.create(new ObservableOnSubscribe<List<RecordEntity>>() {
+//            @Override
+//            public void subscribe(@NonNull ObservableEmitter<List<RecordEntity>> emitter) throws Throwable {
+//                emitter.onNext(mRecordDao.getAll());
+//            }
+//        }).subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread());
+//
 //    }
+
+    public LiveData<List<RecordEntity>> readAllData(){
+        return mRecordDao.getAll();
+    }
 //
 //    public LiveData<List<RecordEntity>> readByTag(String tag){
 //        LiveData<List<RecordEntity>> result = mRecordDao.findByTag(tag);
@@ -60,8 +62,8 @@ public class MainPageRepository extends BaseRepository {
         return result;
     }
 
-    public Observable<Long> mockInsert(){
-        return Observable.create((ObservableOnSubscribe<Long>)emitter->{
+    public void mockInsert(){
+         Observable.create((ObservableOnSubscribe<Long>)emitter->{
             RecordEntity recordEntity = new RecordEntity();
             recordEntity.name = String.valueOf(System.currentTimeMillis());
             recordEntity.account = "account";
@@ -70,6 +72,7 @@ public class MainPageRepository extends BaseRepository {
             long v = mRecordDao.insert(recordEntity);
             emitter.onNext(v);
         }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 }
