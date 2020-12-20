@@ -94,7 +94,7 @@ public class EditActivity extends BaseActivity {
         });
 
         mBtnDelete.setOnLongClickListener(v->{
-//            delete(mId);
+            delete();
             return true;
         });
     }
@@ -105,6 +105,7 @@ public class EditActivity extends BaseActivity {
             public void onChanged(RecordEntity recordEntity) {
                 Log.d(TAG, "onChanged: query by id: " + recordEntity);
                 if (ObjectUtils.isNotEmpty(recordEntity)){
+                    mViewModel.cachedEntity(recordEntity);
                     mEtName.setText(recordEntity.name);
                     mEtAccount.setText(recordEntity.account);
                     mEtPwd.setText(recordEntity.encryptedPwd);
@@ -129,17 +130,19 @@ public class EditActivity extends BaseActivity {
     }
 
     private void update(){
-        mViewModel.update(mEtName.getText().toString(),
+        mViewModel.update(mId,
+                mEtName.getText().toString(),
                 mEtAccount.getText().toString(),
                 mEtPwd.getText().toString(),
                 mEtDesc.getText().toString())
                 .observe(this, l->{
                     Log.d(TAG, "update: 更新成功!");
+                    finish();
                 });
     }
 
-    private void delete(RecordEntity entity){
-        mViewModel.delete(entity)
+    private void delete(){
+        mViewModel.delete()
                 .observe(this, i->{
                     Log.d(TAG, "delete: 删除成功!");
                     finish();

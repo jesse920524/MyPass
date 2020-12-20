@@ -5,4 +5,5 @@
     <string name="edit">编辑</string>
     <string name="add">新建</string>
     <string name="long_press_delete">长按删除</string>
+    <string name="password_hide">********</string>
 </resources>

@@ -33,6 +33,11 @@ public class EditVM extends BaseViewModel {
     public EditVM() {
     }
 
+    /**查询成功后, 保存*/
+    public void cachedEntity(RecordEntity entity){
+        mRecordEntityData.setValue(entity);
+    }
+
     public LiveData<RecordEntity> queryById(long id){
         return mRepository.queryById(id);
     }
@@ -71,11 +76,13 @@ public class EditVM extends BaseViewModel {
          return mAddData;
     }
 
-    public LiveData<Long> update(String name,
-                                 String account,
-                                 String pwd,
-                                 String desc){
-        RecordEntity entity = new RecordEntity();
+    public LiveData<Long> update(
+            long id,
+            String name,
+            String account,
+            String pwd,
+            String desc){
+        RecordEntity entity = mRecordEntityData.getValue();
         entity.name = name;
         entity.account = account;
         entity.encryptedPwd = pwd;
@@ -105,8 +112,8 @@ public class EditVM extends BaseViewModel {
         return mUpdateData;
     }
 
-    public LiveData<Integer> delete(RecordEntity entity){
-        mRepository.deleteById(entity)
+    public LiveData<Integer> delete(){
+        mRepository.deleteById(mRecordEntityData.getValue())
                 .subscribe(new Observer<Integer>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
