@@ -1,12 +1,16 @@
 package jessefu.me.mypass.pages.main_page;
 
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +21,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.List;
 
@@ -37,6 +42,7 @@ import jessefu.me.mypass.pages.main_page.adapter.MainPageRvAdapter;
 public class MainPageActivity extends BaseActivity {
     private static final String TAG = "MainPageActivity";
 
+    private MaterialSearchView mSearchView;
     private SwipeRefreshLayout mSrl;
     private RecyclerView mRecyclerView;
     private FloatingActionButton mFab;
@@ -63,6 +69,7 @@ public class MainPageActivity extends BaseActivity {
         mSrl = findViewById(R.id.srl_amp);
         mRecyclerView = findViewById(R.id.rv_amp);
         mFab = findViewById(R.id.fab_amp);
+//        mSearchView = findViewById(R.id.search_view);
 
         mFab.setOnClickListener(v->{
 //            mViewModel.mockInsert();
@@ -87,6 +94,7 @@ public class MainPageActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.menu_search_search);
         return true;
     }
 

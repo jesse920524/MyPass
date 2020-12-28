@@ -3,27 +3,20 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_amp"
+    <FrameLayout
+        android:id="@+id/fl_amp_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        app:contentInsetStart="0dp">
-        <RelativeLayout
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_amp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="44dp"
+            app:contentInsetStart="0dp"
             android:background="@color/purple_500">
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_view_amp"
-                android:layout_width="240dp"
-                android:layout_height="match_parent"
-                android:inputType="text"
-                app:searchIcon="@drawable/ic_baseline_search_24"
-                app:searchHintIcon="@null"
-                app:closeIcon="@drawable/ic_baseline_close_24"
-                android:maxWidth="240dp"
-                ></androidx.appcompat.widget.SearchView>
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
+
+    </FrameLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_amp"
@@ -42,7 +35,7 @@
         android:id="@+id/srl_amp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tb_amp">
+        android:layout_below="@id/fl_amp_toolbar">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_amp"
             android:layout_width="match_parent"
